@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Policy;
@@ -167,7 +168,7 @@ namespace JD_Get
                 {
                     ql.Login();
                 }
-                key = ExistJDCookieCombine(pin, key);
+                //key = ExistJDCookieCombine(pin, key);
                 string id = ql.GetEnvs(pin);
                 if (string.IsNullOrEmpty(id))
                 {
