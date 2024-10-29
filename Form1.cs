@@ -395,8 +395,15 @@ namespace JD_Get
         /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.FormLocation = this.Location;
-            Properties.Settings.Default.FormSize = this.Size;
+            if (this.Location.X > 0 && this.Location.Y > 0)
+            {
+                Properties.Settings.Default.FormLocation = this.Location;
+            }
+            if (this.Size.Width > 0 && this.Size.Height > 0)
+            {
+                Properties.Settings.Default.FormSize = this.Size;
+            }
+          
             Properties.Settings.Default.Save();
         }
 
@@ -423,7 +430,7 @@ namespace JD_Get
             {
                 ql.Login();
             }
-            var all = ql.GetAllJDCookieEnvs();
+            var all= ql.GetAllJDCookieEnvs();
             string pattern = @"from_jdget=(.+);";
 
             List<string> allDisable = new List<string>();
@@ -433,7 +440,7 @@ namespace JD_Get
                 Match match = Regex.Match(item.value, pattern);
                 if (match.Success)
                 {
-                    allDisable.Add("账号：" + match.Groups[1]);
+                    allDisable.Add("账号："+ match.Groups[1]);
                 }
                 else
                 {
